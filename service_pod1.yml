@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-service
+  labels:
+    app: mynginx
+    author: maruti
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: httpd-service
+  labels:
+    app: myhttpd
+    author: maruti
+spec:
+  containers:
+    - name: httpd-container
+      image: httpd
+...

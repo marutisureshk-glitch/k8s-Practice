@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpd-service
+  labels:
+    author: maruti
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 80
+      port: 8081
+      nodePort: 30002
+  selector:
+    app: myhttpd
+    author: maruti
+...

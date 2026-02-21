@@ -1,0 +1,13 @@
+---
+apiVerison: v1
+kind: Pod
+metadata:
+  name: httpd-pod
+  labels:
+    app: myhttpd1
+    author: maruti
+spec:
+  containers:
+    - name: httpd-pod
+      image: httpd
+...
