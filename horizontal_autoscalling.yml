@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mysqlapp
+  template:
+    metadata:
+      name: mysql-pod
+      labels:
+        app: mysqlapp
+    spec:
+      containers:
+        - name: mysql-app
+          image: mysql
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 150m
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: a
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+type: Opaque
+stringData:
+  a: maruti
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  type: ClusterIP
+  ports:
+    - targetPort: 3306
+      port: 3306
+  selector:
+    app: mysqlapp
+
+...

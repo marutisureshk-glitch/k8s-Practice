@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deplopyment
+  labels:
+    app: postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresapp
+  template:
+    metadata:
+      name: postgres-pod
+      labels:
+        app: postgresapp
+    spec:
+      containers:
+        - name: postgres-container
+          image: postgres
+          env:
+            - name: POSTGRES_USER
+              value: maruti
+            - name: POSTGRES_PASSWORD
+              value: maruti
+            - name: POSTGRES_DB
+              value: maruti-db
+
+...
+

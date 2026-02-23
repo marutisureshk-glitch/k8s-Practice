@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-app
+  labels:
+    author: maruti
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: resultapp
+  template:
+    metadata:
+      name: result-pod
+      labels:
+        app: resultapp
+    spec:
+      containers:
+        - name: result-app
+          image: dockersamples/examplevotingapp_result
+...
